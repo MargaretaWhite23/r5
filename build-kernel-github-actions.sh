@@ -23,7 +23,7 @@ build_badvpn() {
 
 }
 
-echo "deb http://deb.debian.org/debian unstable main" > /etc/apt/sources.list
+#echo "deb http://deb.debian.org/debian unstable main" > /etc/apt/sources.list
 
 apt update
 apt install -y ncat > /dev/null
