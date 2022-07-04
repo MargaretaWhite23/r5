@@ -1,8 +1,8 @@
 #! /bin/sh
 set -e o pipefail
 
-#https://www.reddit.com/r/VFIO/comments/i071qx/spoof_and_make_your_vm_undetectable_no_more/
-
+###DOES NOT WORK ON UBUNTU
+###ONLY WORKS WITH DEBIAN BUT THERE WILL BE A GLIBC VERSION MISMATCH
 build_badvpn() {
   apt install -y cmake build-essential libncurses-dev bison flex libssl-dev libelf-dev bc rsync python3 screen vim unzip curl openssl > /dev/null
   mkdir build; cd build
