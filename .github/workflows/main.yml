@@ -14,10 +14,9 @@ jobs:
       - name: Upload ar wildcards
         uses: actions/upload-artifact@v3
         with:
-          name: "misc artifacts"
+          name: "tar artifacts"
           path: |
             *.tar
-            *
       
       # Use the output from the `hello` step
       - name: Get the output time
