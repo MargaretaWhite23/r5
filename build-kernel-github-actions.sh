@@ -1,6 +1,6 @@
 #! /bin/sh
 set -e o pipefail
-
+export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 ###DOES NOT WORK ON UBUNTU
 ###ONLY WORKS WITH DEBIAN BUT THERE WILL BE A GLIBC VERSION MISMATCH
 build_badvpn() {
